@@ -8,7 +8,7 @@ class linkedl
 		int data;
 		node(int d)
 		{ 
-			data=da;
+			data=d;
 			next=null;
 		}
 	}
