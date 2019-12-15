@@ -1,0 +1,99 @@
+package check;
+import java.util.*;
+ class BST
+ {
+	 class node{
+		 int data;
+		 node left;
+		 node right;
+		 public node(int d)
+		 {
+			 data=d;
+			 left=null;
+			 right=null;
+		 }
+	 }
+	 public node root=null;
+	 public void insert(int d)
+	 {
+		  root=insert2(d,root);
+	 }
+	 public node insert2(int d,node root)
+	 {
+		 node newnode=new node(d);
+		 if(root==null)
+		 {
+			 root=newnode;
+			 return root;
+		 }
+		 else
+		 {
+			 if(root.data<d)
+			 {
+				 root.right=insert2(d,root.right);
+			 }
+			 if(root.data>d)
+			 {
+				 root.left=insert2(d,root.left);
+			 }
+		 }
+		 return root;
+	 }
+	 void printspiral()
+	 {
+		 Queue<node> q=new LinkedList<node>();
+		 q.add(root);
+		 LinkedList<Integer> al=new LinkedList<Integer>();
+		 int button=0; 
+		  while(!q.isEmpty())
+		   {  int n=q.size();
+			 for(int i=0;i<n;i++)
+			 {
+				 node frontnode=q.remove();
+				 al.add(frontnode.data);
+				 if(frontnode.left!=null)
+				 {
+					 q.add(frontnode.left);
+				 }
+				 if(frontnode.right!=null)
+				 {
+					 q.add(frontnode.right);
+				 }
+			 }
+				 if(button%2==0)
+				 {
+					 while(!al.isEmpty())
+					 {
+						 System.out.print("fromfirst "+al.removeFirst()+" ");
+						 
+					 }
+					 System.out.println();
+				 }
+				 else
+				 {
+					 while(!al.isEmpty())
+					 {
+						 System.out.print("fromlast "+al.removeLast()+" ");
+						
+					 }System.out.println();
+					 
+				 }
+				 button++;
+			 }
+			 
+		 }
+	 }
+public class Btreeinpreorder {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		BST b=new BST();
+        int arr[]=new int[7];
+        for(int i=0;i<7;i++)
+        {
+        	b.insert(sc.nextInt());
+        }
+       b.printspiral();
+	}
+
+}
